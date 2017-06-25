@@ -1,7 +1,7 @@
-<md-card>   
+<md-card *ngIf="questions">   
     <form class="search-form">
-        <md-input-container class="search-full-width">
-            <input mdInput placeholder="Search Term...">
+        <md-input-container class="search-full-width" *ngIf="searchInput">
+            <input type="text" mdInput [formControl]="searchInput" placeholder="Search Term...">
         </md-input-container>
     </form>
 </md-card>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
 import { Question, Option, Quiz } from '../classes';
 import { QuestionService } from '../question-service.service'
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { Observable }        from 'rxjs/Observable';
 import { Subject }           from 'rxjs/Subject';
@@ -20,22 +21,25 @@ import 'rxjs/add/operator/distinctUntilChanged';
   styleUrls: ['./question-search.component.css']
 })
 export class QuestionSearchComponent implements OnInit {
-  questions: Observable<Question[]>;
-  private searchTerms = new Subject<string>();
+  questions: Question[];
+  searchInput: FormControl;
 
   constructor(
     private questionService: QuestionService,
-    private router: Router) { }
+    private router: Router
+    ) { }
     
-    // Push a search term into the observable stream.
-  search(term: string): void {
-    this.searchTerms.next(term);
-  }
+ngOnInit() {
+  this.questions = [];
+  this.searchInput = new FormControl();
+  this.questionService.getQuestions('LSA').subscribe(questions => this.addQuestions(questions));
+  this.questionService.getQuestions('CSSA').subscribe(questions => this.addQuestions(questions));
+}
 
-  ngOnInit() {
-    // this.questions = this.searchTerms
-    //                      .debounceTime(300)
-    //                      .distinctUntilChanged()
-  }
+addQuestions(questions: Question[]) {
+  questions.forEach(question => this.questions.push(question));
+}
 
+
+ 
 }

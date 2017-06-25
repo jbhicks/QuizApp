@@ -36,7 +36,7 @@ export class QuizMainComponent implements OnInit {
     this.currentIndex = 0;
     this.questionsSize = questions.length;
     this.selectedQuestion = this.questions[this.currentIndex];
-    console.log(JSON.stringify(this.selectedQuestion));
+    //console.log(JSON.stringify(this.selectedQuestion));
   }
 
   submit(question: Question): void {

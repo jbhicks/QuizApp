@@ -21,6 +21,7 @@ import {
         MdInputModule,
        } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import 'hammerjs';
 import { QuestionSearchComponent } from './question-search/question-search.component';
 import { ViewResultsComponent } from './view-results/view-results.component';
@@ -50,6 +51,9 @@ import { QuizMainComponent } from './quiz-main/quiz-main.component';
     MdListModule,
     MdSlideToggleModule,
     MdInputModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule,
     RouterModule.forRoot([
       {
         path: '',
