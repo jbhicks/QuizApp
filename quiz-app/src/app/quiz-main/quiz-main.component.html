@@ -1,0 +1,26 @@
+<md-card *ngIf="selectedQuiz">
+    <div *ngIf="!isComplete && selectedQuestion">
+        <md-card-title>
+            <section class="progress-section">
+                <md-progress-bar class="progress-margin" [color]="blue" [mode]="determinate" [value]="progress" [bufferValue]="0">
+                </md-progress-bar>
+            </section>
+        </md-card-title>
+        <md-card-content>
+            
+            <question-detail [question]="selectedQuestion" *ngIf="!isComplete"></question-detail>
+
+        </md-card-content>
+        <md-card-actions>
+            <button md-button-raised class="md-primary" (click)="submit(selectedQuestion)">Submit</button>
+        </md-card-actions>
+    </div>
+    <div *ngIf="isComplete && selectedQuestion">
+        <md-card-title>Review Answers</md-card-title>
+
+        <md-card-content>
+            
+            <view-results [questions]="questions"></view-results>
+        </md-card-content>
+    </div>
+</md-card>

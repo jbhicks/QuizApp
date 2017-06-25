@@ -1,0 +1,9 @@
+<div *ngIf="question">
+      <h3>{{question.id}}: {{question.name}}</h3>
+      <md-list>
+        <md-list-item *ngFor="let o of question.options">
+          <md-checkbox class="md-secondary" [value]="isSelected" (click)="onSelect(o)">{{o.name}}</md-checkbox><br>
+       </md-list-item>
+     </md-list>
+  <br>
+</div>

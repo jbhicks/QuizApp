@@ -1,0 +1,19 @@
+<md-toolbar layout="row" color="primary">
+    <p>{{title}}</p>
+    
+    <span class="example-spacer"></span>
+    <md-slide-toggle 
+        class="example-margin"
+        [(ngModel)]="shouldShuffle">
+            Shuffle {{shouldShuffle}}
+    </md-slide-toggle>
+</md-toolbar>
+    
+<md-toolbar layout="row" color="dark-warn">
+    <nav>
+        <a md-raised-button color="primary" routerLink="/Search">Search</a>
+        <a md-raised-button color="primary" routerLink="/LSAQuiz">LSA</a>
+        <a md-raised-button color="primary" routerLink="/CSSAQuiz">CSSA</a>
+    </nav>
+</md-toolbar>
+<router-outlet></router-outlet>

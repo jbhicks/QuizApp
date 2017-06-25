@@ -1,0 +1,28 @@
+<div *ngIf="questions">
+ <md-card>
+   <md-card-title>Grade: {{grade}}%</md-card-title>
+ </md-card>
+    <div *ngFor="let question of questions">
+      <md-card>
+        
+        <md-card-title>{{question.id}}: {{question.name}}</md-card-title>
+        <ul>
+            <li *ngFor="let option of question.options">
+                <md-card-content>
+                  <md-checkbox 
+                    [color]="option.isAnswer ? 'primary' : 'warn'" 
+                    class="md-secondary" 
+                    [checked]="option.isSelected" 
+                    [value]="option.isSelected"
+                    [disabled]="false">
+                    {{option.name}}
+                    </md-checkbox><br>
+                  
+                  </md-card-content>
+            </li>
+        </ul>
+      </md-card>
+    </div>
+    <div><hr></div>
+</div>
+
