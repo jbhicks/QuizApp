@@ -17,6 +17,7 @@ export class QuestionService implements OnInit {
     return this.http.get(`/api/${type}Questions`).map(this.extractData);
   }
 
+
   extractData(res : Response) {
     //console.log(res.json().questions)
     return res.json().questions;

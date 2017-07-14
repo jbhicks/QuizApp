@@ -21,26 +21,19 @@ import 'rxjs/add/operator/distinctUntilChanged';
   styleUrls: ['./question-search.component.css']
 })
 export class QuestionSearchComponent implements OnInit {
-  questions: Question[];
-  searchInput: FormControl;
+questions: Observable<Question[]>;
+searchInput: FormControl = new FormControl('');
+private searchTerms = new Subject<string>();
 
-  constructor(
-    private questionService: QuestionService,
-    private router: Router
-    ) { }
+constructor(private questionService: QuestionService, private router: Router) { }
     
 ngOnInit() {
-  this.questions = [];
-  this.searchInput = new FormControl();
-  this.questionService.getQuestions('LSA').subscribe(questions => this.addQuestions(questions));
-  this.questionService.getQuestions('CSSA').subscribe(questions => this.addQuestions(questions));
+ 
 }
 
-addQuestions(questions: Question[]) {
-  questions.forEach(question => this.questions.push(question));
-  console.log(this.questions);
+search(term: string): void {
+    this.searchTerms.next(term);
+    console.log(term);
 }
-
-
  
 }
