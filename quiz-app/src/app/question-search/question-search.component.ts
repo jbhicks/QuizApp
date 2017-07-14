@@ -38,6 +38,7 @@ ngOnInit() {
 
 addQuestions(questions: Question[]) {
   questions.forEach(question => this.questions.push(question));
+  console.log(this.questions);
 }
 
 

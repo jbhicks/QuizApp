@@ -13,6 +13,7 @@
         </md-card-content>
         <md-card-actions>
             <button md-button-raised class="md-primary" (click)="submit(selectedQuestion)">Submit</button>
+            <button md-button-raised class="md-primary" (click)="done()">Done</button>
         </md-card-actions>
     </div>
     <div *ngIf="isComplete && selectedQuestion">

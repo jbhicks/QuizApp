@@ -52,6 +52,11 @@ export class QuizMainComponent implements OnInit {
 
   }
 
+  done(): void{
+    this.progress = 100;
+    this.isComplete = true;
+  }
+
   
 
 }

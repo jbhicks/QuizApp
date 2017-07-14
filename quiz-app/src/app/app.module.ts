@@ -26,6 +26,7 @@ import 'hammerjs';
 import { QuestionSearchComponent } from './question-search/question-search.component';
 import { ViewResultsComponent } from './view-results/view-results.component';
 import { QuizMainComponent } from './quiz-main/quiz-main.component';
+import { QuestionSearchDetailComponent } from './question-search-detail/question-search-detail.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { QuizMainComponent } from './quiz-main/quiz-main.component';
     QuestionSearchComponent,
     ViewResultsComponent,
     QuizMainComponent,
+    QuestionSearchDetailComponent,
   ],
   imports: [
     BrowserModule,
