@@ -8,7 +8,7 @@
         </md-card-title>
         <md-card-content>
             
-            <question-detail [question]="selectedQuestion" *ngIf="!isComplete"></question-detail>
+            <question-detail [question]="selectedQuestion" (onAnswered)="submit(selectedQuestion)" *ngIf="!isComplete"></question-detail>
 
         </md-card-content>
         <md-card-actions>
