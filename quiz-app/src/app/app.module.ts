@@ -19,6 +19,7 @@ import {
         MdGridListModule,
         MdSlideToggleModule,
         MdInputModule,
+        MdSliderModule
        } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';

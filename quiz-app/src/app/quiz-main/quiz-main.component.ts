@@ -20,7 +20,7 @@ export class QuizMainComponent implements OnInit {
   currentIndex: number;
   answeredQuestions: number;
   progress: number = 0;
-  shouldShuffle: boolean;
+  shouldShuffle: boolean = true;
   isComplete: boolean;
   
   constructor(private questionService: QuestionService) {}
@@ -32,6 +32,10 @@ export class QuizMainComponent implements OnInit {
   }
 
   setQuestions(questions: Question[]) {
+    if (this.shouldShuffle) {
+      questions = this.shuffleArray(questions);
+      questions = questions.slice(0, 100);
+    }
     this.questions = questions;
     this.currentIndex = 0;
     this.questionsSize = questions.length;
@@ -40,16 +44,24 @@ export class QuizMainComponent implements OnInit {
   }
 
   submit(question: Question): void {
-      this.currentIndex++;
-      this.progress = (this.currentIndex / this.questionsSize)*100;
-      if (this.currentIndex < this.questions.length) {
-        this.selectedQuestion = this.questions[this.currentIndex];
-        this.answeredQuestions++;
-      } else {
+    this.currentIndex++;
+    this.progress = (this.currentIndex / this.questionsSize)*100;
+    if (this.currentIndex < this.questions.length) {
+      this.selectedQuestion = this.questions[this.currentIndex];
+      this.answeredQuestions++;
+    } else {
+      this.isComplete = true;
+    }
+  }
 
-        this.isComplete = true;
-      }
-
+  shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
   }
 
   done(): void{

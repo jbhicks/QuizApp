@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
+import {MdSliderModule} from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -14,4 +15,5 @@ export class AppComponent implements OnInit {
   }
   title = 'Quiz Me v.1';
   shouldShuffle: boolean;
+
 }

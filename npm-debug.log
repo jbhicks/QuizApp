@@ -7,7 +7,7 @@
 4 verbose stack Error: ENOENT: no such file or directory, open 'G:\Dev\Projects\Angular\QuizApp\package.json'
 4 verbose stack     at Error (native)
 5 verbose cwd G:\Dev\Projects\Angular\QuizApp
-6 error Windows_NT 10.0.15063
+6 error Windows_NT 10.0.16232
 7 error argv "G:\\Dev\\node.js\\node.exe" "G:\\Dev\\node.js\\node_modules\\npm\\bin\\npm-cli.js" "start"
 8 error node v6.10.2
 9 error npm  v3.10.10

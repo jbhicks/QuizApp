@@ -2,12 +2,11 @@
     <p>{{title}}</p>
     
     <span class="example-spacer"></span>
+    <md-slider min="1" max="100" step="1" value="2"></md-slider>
+
     <p>Shuffle</p>
-    <md-slide-toggle 
-        class="example-margin"
-        [(ngModel)]="shouldShuffle">
-            
-    </md-slide-toggle>
+    <md-slide-toggle class="example-margin" [(ngModel)]="shouldShuffle"></md-slide-toggle>
+
 </md-toolbar>
     
 <md-toolbar layout="row" color="dark-warn">
