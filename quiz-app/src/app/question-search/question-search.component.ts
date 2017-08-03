@@ -14,21 +14,37 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+import { QuestionSearchService } from "app/question-search.service";
 
 @Component({
   selector: 'app-question-search',
   templateUrl: './question-search.component.html',
   styleUrls: ['./question-search.component.css']
 })
+
 export class QuestionSearchComponent implements OnInit {
-questions: Observable<Question[]>;
+questions: Question[] = new Array<Question>();
+questionsSize: number;
 searchInput: FormControl = new FormControl('');
 private searchTerms = new Subject<string>();
+obsQuestions: Observable<Question[]>;
 
-constructor(private questionService: QuestionService, private router: Router) { }
+constructor(private questionService: QuestionService, private router: Router, private questionSearchService: QuestionSearchService) { }
     
 ngOnInit() {
- 
+  this.questionService.getQuestions(`LSA`).subscribe(questions => this.setQuestions(questions));
+  this.questionService.getQuestions(`CSSA`).subscribe(questions => this.setQuestions(questions));
+  
+}
+
+setQuestions(questions: Question[]) {
+  this.questions.concat(questions);
+  this.questionsSize = this.questions.length;
+  console.log(`Added ${questions.length} questions`);
+}
+
+searchQuestions(term: string): Question[] {
+  return this.questions;
 }
 
 search(term: string): void {

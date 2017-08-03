@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.shouldShuffle = true;
   }
-  title = 'Quiz Me v.1';
+  title = 'Quiz Me';
   shouldShuffle: boolean;
 
 }
