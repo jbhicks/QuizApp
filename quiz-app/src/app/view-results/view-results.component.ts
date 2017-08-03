@@ -9,9 +9,9 @@ import {MdListModule} from '@angular/material';
 })
 export class ViewResultsComponent implements OnInit {
   @Input() questions: Question[];
-  grade: number;
-  numCorrect: number;
-  numQuestions: number;
+  grade: number = 0;
+  numCorrect: number = 0;
+  numQuestions: number = 0;
 
   constructor() { }
 
@@ -20,11 +20,16 @@ export class ViewResultsComponent implements OnInit {
   }
 
   gradeQuiz(questions: Question[]){
-    let count = 0;
+    
     questions.forEach(question => {
-      if (question.isCorrect) count++;
+      console.log(`Grading question: \n${JSON.stringify(question)}`);
+      let isCorrect = true;
+      question.options.forEach(option => {
+        if (option.isSelected && !option.isAnswer) isCorrect = false;
+      });
+      if (isCorrect) this.numCorrect++;
     });
-    this.numCorrect = count;
+    
     this.numQuestions = questions.length;
     this.grade = (this.numCorrect / this.numQuestions) * 100;
   }
