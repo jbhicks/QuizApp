@@ -34,7 +34,7 @@ export class QuizMainComponent implements OnInit {
   setQuestions(questions: Question[]) {
     if (this.shouldShuffle) {
       questions = this.shuffleArray(questions);
-      questions = questions.slice(0, 100);
+      questions = questions.slice(0, 2);
     }
     this.questions = questions;
     this.currentIndex = 0;
@@ -66,6 +66,7 @@ export class QuizMainComponent implements OnInit {
 
   done(): void{
     this.progress = 100;
+
     this.isComplete = true;
   }
 

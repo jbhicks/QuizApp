@@ -39,4 +39,7 @@ testem.log
 
 # System Files
 .DS_Store
-Thumbs.db
+Thumbs.db23555555
+
+# data
+/src/app/data/*
