@@ -22,8 +22,9 @@ export class QuestionDetailComponent {
       if(option.isSelected) numSelected++;
       if(option.isAnswer) numAnswers++;
     });
-    if (numAnswers === numSelected) {
-      console.log(`Selected: ${numSelected}\nAnswers: ${numAnswers}`);
+    console.log(`Num selected: ${numSelected}`);
+    console.log(`Num answers: ${numAnswers}`);
+    if ((numAnswers === numSelected) && (numSelected > 0)) {
       this.onAnswered.emit(true);
     }
     

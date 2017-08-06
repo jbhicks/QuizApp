@@ -20,27 +20,31 @@ export class QuizMainComponent implements OnInit {
   currentIndex: number;
   answeredQuestions: number;
   progress: number = 0;
+  quizLength: number = 0;
   shouldShuffle: boolean = true;
   isComplete: boolean;
   
   constructor(private questionService: QuestionService) {}
 
   ngOnInit() {
-    this.questionService.getQuestions(this.selectedQuiz).subscribe(questions => this.setQuestions(questions));
     this.isComplete = false;
     this.answeredQuestions = 0;
+    this.quizLength = 99;
+    this.questionService.getQuestions(this.selectedQuiz).subscribe(questions => this.setQuestions(questions));
   }
 
   setQuestions(questions: Question[]) {
     if (this.shouldShuffle) {
       questions = this.shuffleArray(questions);
-      questions = questions.slice(0, 2);
+      questions = questions.slice(0, this.quizLength);
+      questions.forEach(element => {
+        console.log(element.id);
+      });
     }
     this.questions = questions;
     this.currentIndex = 0;
     this.questionsSize = questions.length;
     this.selectedQuestion = this.questions[this.currentIndex];
-    //console.log(JSON.stringify(this.selectedQuestion));
   }
 
   submit(question: Question): void {
@@ -66,7 +70,6 @@ export class QuizMainComponent implements OnInit {
 
   done(): void{
     this.progress = 100;
-
     this.isComplete = true;
   }
 
