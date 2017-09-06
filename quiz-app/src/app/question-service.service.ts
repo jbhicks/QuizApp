@@ -14,7 +14,8 @@ export class QuestionService implements OnInit {
     }
 
   getQuestions(type: string): Observable<Question[]>{
-    return this.http.get(`/api/${type}Questions`).map(this.extractData);
+    // return this.http.get(`/api/${type}Questions`).map(this.extractData);
+    return this.http.get(`assets/data/${type}.json`).map(this.extractData);
   }
 
 

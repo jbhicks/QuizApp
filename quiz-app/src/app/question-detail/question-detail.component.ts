@@ -24,6 +24,7 @@ export class QuestionDetailComponent {
     });
     console.log(`Num selected: ${numSelected}`);
     console.log(`Num answers: ${numAnswers}`);
+    
     if ((numAnswers === numSelected) && (numSelected > 0)) {
       this.onAnswered.emit(true);
     }

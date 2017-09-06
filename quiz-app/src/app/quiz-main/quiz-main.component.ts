@@ -12,6 +12,7 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./quiz-main.component.css']
 })
 export class QuizMainComponent implements OnInit {
+  
   @Input() selectedQuiz: string;
   selectedQuestion: Question;
   quiz: Quiz;
@@ -35,16 +36,28 @@ export class QuizMainComponent implements OnInit {
 
   setQuestions(questions: Question[]) {
     if (this.shouldShuffle) {
-      questions = this.shuffleArray(questions);
+      questions = this.shuffle(questions);
       questions = questions.slice(0, this.quizLength);
-      questions.forEach(element => {
-        console.log(element.id);
-      });
+      this.ensureUniqueness(questions);
     }
     this.questions = questions;
     this.currentIndex = 0;
     this.questionsSize = questions.length;
     this.selectedQuestion = this.questions[this.currentIndex];
+    this.ensureUniqueness(questions);
+    
+  }
+
+  ensureUniqueness(questions: Question[]) {
+    console.log(questions);
+    for(let i = 0; i < questions.length; i++){
+      let id = questions[i].id;
+      let count = 0;
+      for(let j = 0; j < questions.length; j++){
+        if(questions[j].id == id) count++;
+      }
+      if (count > 1) console.log(`found ${id} ${count} times`);
+    }
   }
 
   submit(question: Question): void {
@@ -58,14 +71,12 @@ export class QuizMainComponent implements OnInit {
     }
   }
 
-  shuffleArray(array) {
-    for (var i = array.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+  shuffle(a) {
+    for (let i = a.length; i; i--) {
+        let j = Math.floor(Math.random() * i);
+        [a[i - 1], a[j]] = [a[j], a[i - 1]];
     }
-    return array;
+    return a;
   }
 
   done(): void{

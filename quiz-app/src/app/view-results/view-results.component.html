@@ -1,6 +1,6 @@
 <div *ngIf="questions">
  <md-card>
-   <md-card-title>Grade: {{grade}}%</md-card-title>
+   <md-card-title>Grade: {{grade | number:'1.1-1'}}%</md-card-title>
  </md-card>
     <div *ngFor="let question of questions">
       <md-card>
