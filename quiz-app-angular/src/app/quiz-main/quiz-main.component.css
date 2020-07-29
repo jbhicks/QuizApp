@@ -12,3 +12,7 @@
 .progress-margin {
   margin: 0 10px;
 }
+
+.mat-slider {
+  width: 400px;
+}

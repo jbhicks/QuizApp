@@ -1,4 +1,4 @@
-.example-h2 {
+.example-h3 {
   margin: 10px;
 }
 
@@ -12,17 +12,23 @@
 .example-margin {
   margin: 0 10px;
 }
-.listdemoListControls md-divider {
+.listdemoListControls mat-divider {
   margin-top: 0;
-  margin-bottom: 0; }
+  margin-bottom: 0;
+}
 
-.listdemoListControls md-list {
-  padding-top: 0; }
+.listdemoListControls mat-list {
+  padding-top: 0;
+}
 
-.listdemoListControls md-list-item > p,
-.listdemoListControls md-list-item > .md-list-item-inner > p,
-.listdemoListControls md-list-item .md-list-item-inner > p,
-.listdemoListControls md-list-item .md-list-item-inner > .md-list-item-inner > p {
+.listdemoListControls mat-list-item > p,
+.listdemoListControls mat-list-item > .mat-list-item-inner > p,
+.listdemoListControls mat-list-item .mat-list-item-inner > p,
+.listdemoListControls
+  mat-list-item
+  .mat-list-item-inner
+  > .mat-list-item-inner
+  > p {
   -webkit-user-select: none;
   /* Chrome all / Safari all */
   -moz-user-select: none;
@@ -30,4 +36,5 @@
   -ms-user-select: none;
   /* IE 10+ */
   user-select: none;
-  /* Likely future */ }
+  /* Likely future */
+}

@@ -1,28 +1,26 @@
 <div *ngIf="questions">
- <md-card>
-   <md-card-title>Grade: {{grade | number:'1.1-1'}}%</md-card-title>
- </md-card>
-    <div *ngFor="let question of questions">
-      <md-card>
-        
-        <md-card-title>{{question.id}}: {{question.name}}</md-card-title>
-        <ul>
-            <li *ngFor="let option of question.options">
-                <md-card-content>
-                  <md-checkbox 
-                    [color]="option.isAnswer ? 'primary' : 'warn'" 
-                    class="md-secondary" 
-                    [checked]="option.isSelected" 
-                    [value]="option.isSelected"
-                    [disabled]="false">
-                    {{option.name}}
-                    </md-checkbox><br>
-                  
-                  </md-card-content>
-            </li>
-        </ul>
-      </md-card>
-    </div>
-    <div><hr></div>
+  <mat-card>
+    <mat-card-title>Grade: {{ grade | number: "1.1-1" }}%</mat-card-title>
+  </mat-card>
+  <div *ngFor="let question of questions">
+    <mat-card>
+      <mat-card-title>{{ question.id }}: {{ question.name }}</mat-card-title>
+      <ul>
+        <li *ngFor="let option of question.options">
+          <mat-card-content>
+            <mat-checkbox
+              [color]="option.isAnswer ? 'primary' : 'warn'"
+              class="mat-secondary"
+              [checked]="option.isSelected"
+              [value]="option.isSelected"
+              [disabled]="false"
+            >
+              {{ option.name }} </mat-checkbox
+            ><br />
+          </mat-card-content>
+        </li>
+      </ul>
+    </mat-card>
+  </div>
+  <div><hr /></div>
 </div>
-

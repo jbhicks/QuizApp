@@ -1,95 +1,66 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
 import { HttpModule } from '@angular/http';
-import { RouterModule }   from '@angular/router';
-import { QuestionService } from './question-service.service';
+
 import { AppComponent } from './app.component';
-import { LSAQuizComponent } from './lsaquiz/lsaquiz.component';
-import { CSSAQuizComponent } from './cssaquiz/cssaquiz.component';
-import { QuestionDetailComponent } from './question-detail/question-detail.component';
-import {
-        MdButtonModule, 
-        MdCheckboxModule, 
-        MdCardModule, 
-        MdToolbarModule, 
-        MdMenuModule, 
-        MdProgressBarModule,
-        MdListModule, 
-        MdGridListModule,
-        MdSlideToggleModule,
-        MdInputModule,
-        MdSliderModule
-       } from '@angular/material';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import 'hammerjs';
-import { QuestionSearchComponent } from './question-search/question-search.component';
-import { ViewResultsComponent } from './view-results/view-results.component';
 import { QuizMainComponent } from './quiz-main/quiz-main.component';
-import { QuestionSearchDetailComponent } from './question-search-detail/question-search-detail.component';
-import { QuestionSearchService } from "app/question-search.service";
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatInputModule } from '@angular/material/input';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatSliderModule } from '@angular/material/slider';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { LSAQuizComponent } from './lsaquiz/lsaquiz.component';
+import { CSAQuizComponent } from './csaquiz/csaquiz.component';
+import { CSSAQuizComponent } from './cssaquiz/cssaquiz.component';
+import { HttpClientModule } from '@angular/common/http';
+import 'hammerjs';
+import { QuestionDetailComponent } from './question-detail/question-detail.component';
+import { ViewResultsComponent } from './view-results/view-results.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    QuizMainComponent,
     LSAQuizComponent,
+    CSAQuizComponent,
     CSSAQuizComponent,
     QuestionDetailComponent,
-    QuestionSearchComponent,
     ViewResultsComponent,
-    QuizMainComponent,
-    QuestionSearchDetailComponent,
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     FormsModule,
     HttpModule,
-    MdButtonModule, 
-    MdCheckboxModule, 
-    MdCardModule, 
-    MdToolbarModule, 
-    MdMenuModule, 
-    MdProgressBarModule, 
-    MdGridListModule,
-    MdListModule,
-    MdSlideToggleModule,
-    MdInputModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatProgressBarModule,
+    MatGridListModule,
+    MatListModule,
+    MatSlideToggleModule,
+    MatSliderModule,
+    MatInputModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule.forRoot([
-      {
-        path: '',
-        redirectTo: '/LSAQuiz',
-        pathMatch: 'full'
-      },
-      {
-        path: 'LSAQuiz',
-        component: LSAQuizComponent
-      },
-      {
-        path: 'CSSAQuiz',
-        component: CSSAQuizComponent
-      },
-      {
-        path: 'Search',
-        component: QuestionSearchComponent
-      }
-    ])
+    MatChipsModule,
+    HttpClientModule,
   ],
-  providers: [QuestionService, QuestionSearchService],
+  providers: [],
   bootstrap: [AppComponent],
-  exports: [
-    MdButtonModule, 
-    MdCheckboxModule, 
-    MdCardModule, 
-    MdToolbarModule, 
-    MdMenuModule, 
-    MdProgressBarModule, 
-    MdGridListModule,
-    MdListModule,
-    MdSlideToggleModule
-  ]
 })
-export class AppModule { }
+export class AppModule {}

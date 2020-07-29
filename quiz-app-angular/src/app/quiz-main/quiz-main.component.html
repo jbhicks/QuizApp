@@ -1,27 +1,49 @@
-<md-card *ngIf="selectedQuiz">
+<mat-card *ngIf="selectedQuiz">
+  <div *ngIf="!isComplete && selectedQuestion">
+    <mat-card-title>
+      Question {{ answeredQuestions }} / {{ numQuestions }}
+      <!-- <mat-slider
+                    class="example-margin"
+                    [max]="100"
+                    [min]="min"
+                    [step]="step"
+                    [tickInterval]="tickInterval"
+                    [(ngModel)]="numQuestions"
+                    (change)="sliderChanged($event.value)">
+                </mat-slider> -->
+      <section class="progress-section">
+        <mat-progress-bar
+          class="progress-margin"
+          [value]="progress"
+          [bufferValue]="0"
+        ></mat-progress-bar>
+      </section>
+    </mat-card-title>
+    <mat-card-content>
+      <app-question-detail
+        [question]="selectedQuestion"
+        (answered)="submit(selectedQuestion)"
+        *ngIf="!isComplete"
+      ></app-question-detail>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-button-raised
+        class="mat-primary"
+        (click)="submit(selectedQuestion)"
+      >
+        Submit
+      </button>
+      <button mat-button-raised class="mat-primary" (click)="done()">
+        Done
+      </button>
+    </mat-card-actions>
+  </div>
 
-    <div *ngIf="!isComplete && selectedQuestion">
-        <md-card-title>
-            <section class="progress-section">
-                <md-progress-bar class="progress-margin" [color]="blue" [mode]="determinate" [value]="progress" [bufferValue]="0">
-                </md-progress-bar>
-            </section>
-        </md-card-title>
-
-        <md-card-content>
-            <question-detail [question]="selectedQuestion" (onAnswered)="submit(selectedQuestion)" *ngIf="!isComplete"></question-detail>
-        </md-card-content>
-        <md-card-actions>
-            <button md-button-raised class="md-primary" (click)="submit(selectedQuestion)">Submit</button>
-            <button md-button-raised class="md-primary" (click)="done()">Done</button>
-        </md-card-actions>
-    </div>
-
-    <div *ngIf="isComplete && selectedQuestion">
-        <md-card-title>Review Answers</md-card-title>
-        <md-card-content>
-            <view-results [questions]="questions"></view-results>
-        </md-card-content>
-    </div>
-
-</md-card>
+  <div *ngIf="isComplete && selectedQuestion">
+    <mat-card-title>Review Answers</mat-card-title>
+    <mat-card-content>
+      <app-view-results [questions]="questions"></app-view-results>
+    </mat-card-content>
+  </div>
+</mat-card>

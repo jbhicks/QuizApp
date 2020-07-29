@@ -1,38 +1,39 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Question, Option, Quiz } from '../classes';
-import {MdListModule} from '@angular/material';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
-  selector: 'view-results',
+  selector: 'app-view-results',
   templateUrl: './view-results.component.html',
-  styleUrls: ['./view-results.component.css']
+  styleUrls: ['./view-results.component.css'],
 })
 export class ViewResultsComponent implements OnInit {
   @Input() questions: Question[];
-  grade: number = 0;
-  numCorrect: number = 0;
-  numQuestions: number = 0;
+  grade = 0;
+  numCorrect = 0;
+  numQuestions = 0;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.gradeQuiz(this.questions);
   }
 
-  gradeQuiz(questions: Question[]){
-    
-    questions.forEach(question => {
-      console.log(`Grading question: \n${JSON.stringify(question)}`);
-      let isCorrect = true;
-      question.options.forEach(option => {
-        if (option.isSelected && !option.isAnswer) isCorrect = false;
+  gradeQuiz(questions: Question[]) {
+    questions.forEach((question) => {
+      // console.log(`Grading question: \n${JSON.stringify(question)}`);
+      let isCorrect = false;
+      question.options.forEach((option) => {
+        if (option.isSelected && option.isAnswer) {
+          isCorrect = true;
+        }
       });
-      if (isCorrect) this.numCorrect++;
+      if (isCorrect) {
+        this.numCorrect++;
+      }
     });
-    
+
     this.numQuestions = questions.length;
     this.grade = (this.numCorrect / this.numQuestions) * 100;
   }
-
-  
 }

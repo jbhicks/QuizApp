@@ -1,9 +1,23 @@
 <div *ngIf="question">
-      <h3>{{question.id}}: {{question.name}}</h3>
-      <md-list>
-        <md-list-item *ngFor="let o of question.options">
-          <md-checkbox class="md-secondary" [value]="isSelected" (click)="onSelect(o)">{{o.name}}</md-checkbox><br>
-       </md-list-item>
-     </md-list>
-  <br>
+  <mat-chip-list>
+    <mat-chip *ngIf="question.version === '7.1'" color="primary" selected="true"
+      >LSA 7.1</mat-chip
+    >
+    <mat-chip *ngIf="question.version === '7.3'" color="accent" selected="true"
+      >LSA 7.3</mat-chip
+    >
+  </mat-chip-list>
+  <h2>{{ question.id }}: {{ question.name }}</h2>
+
+  <mat-list>
+    <mat-list-item *ngFor="let o of question.options">
+      <mat-checkbox
+        class="mat-secondary"
+        [value]="o.isSelected"
+        (click)="onSelect(o)"
+        >{{ o.name }}</mat-checkbox
+      ><br />
+    </mat-list-item>
+  </mat-list>
+  <br />
 </div>

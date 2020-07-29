@@ -1,68 +1,68 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { QuestionService } from '../question-service.service';
+import { QuestionService } from '../question.service';
 import { Question, Option, Quiz } from '../classes';
-import { QuestionDetailComponent } from '../question-detail/question-detail.component';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
 
 @Component({
-  selector: 'quiz-main',
+  selector: 'app-quiz-main',
   templateUrl: './quiz-main.component.html',
-  styleUrls: ['./quiz-main.component.css']
+  styleUrls: ['./quiz-main.component.css'],
 })
 export class QuizMainComponent implements OnInit {
-  
   @Input() selectedQuiz: string;
+  _tickInterval = 1;
   selectedQuestion: Question;
   quiz: Quiz;
   questions: Question[];
-  questionsSize: number;
   currentIndex: number;
   answeredQuestions: number;
-  progress: number = 0;
-  quizLength: number = 0;
-  shouldShuffle: boolean = true;
+  numQuestions: number;
+  progress = 0;
+  autoTicks = false;
+  showTicks = false;
+  min = 1;
+  step = 1;
   isComplete: boolean;
-  
+  LSA73Selected: true;
+  LSA71Selected: true;
+
   constructor(private questionService: QuestionService) {}
 
   ngOnInit() {
     this.isComplete = false;
     this.answeredQuestions = 0;
-    this.quizLength = 99;
-    this.questionService.getQuestions(this.selectedQuiz).subscribe(questions => this.setQuestions(questions));
+    this.questionService.setShouldShuffle(true);
+    this.questionService
+      .getQuestions(this.selectedQuiz)
+      .subscribe((questions) => this.setQuestions(questions.json()));
+  }
+
+  get tickInterval(): number | 'auto' {
+    return this.showTicks ? (this.autoTicks ? 'auto' : this._tickInterval) : 0;
+  }
+
+  set tickInterval(v) {
+    this._tickInterval = Number(v);
   }
 
   setQuestions(questions: Question[]) {
-    if (this.shouldShuffle) {
+    console.log(this.questionService.getShouldShuffle());
+    if (this.questionService.getShouldShuffle()) {
+      console.log(`shuffling questions`);
       questions = this.shuffle(questions);
-      questions = questions.slice(0, this.quizLength);
-      this.ensureUniqueness(questions);
+
+      // console.log(questions);
     }
     this.questions = questions;
     this.currentIndex = 0;
-    this.questionsSize = questions.length;
+    this.questionService.setNumQuestions(this.questions.length);
+    this.numQuestions = questions.length;
     this.selectedQuestion = this.questions[this.currentIndex];
-    this.ensureUniqueness(questions);
-    
-  }
-
-  ensureUniqueness(questions: Question[]) {
-    console.log(questions);
-    for(let i = 0; i < questions.length; i++){
-      let id = questions[i].id;
-      let count = 0;
-      for(let j = 0; j < questions.length; j++){
-        if(questions[j].id == id) count++;
-      }
-      if (count > 1) console.log(`found ${id} ${count} times`);
-    }
+    console.log(`loaded ${this.questions.length}`);
   }
 
   submit(question: Question): void {
     this.currentIndex++;
-    this.progress = (this.currentIndex / this.questionsSize)*100;
+    this.progress = (this.currentIndex / this.questions.length) * 100;
     if (this.currentIndex < this.questions.length) {
       this.selectedQuestion = this.questions[this.currentIndex];
       this.answeredQuestions++;
@@ -71,19 +71,24 @@ export class QuizMainComponent implements OnInit {
     }
   }
 
+  sliderChanged(eventValue) {
+    this.questionService
+      .getQuestions(this.selectedQuiz)
+      .subscribe((questions) => this.setQuestions(questions));
+    this.progress = 0;
+    console.log(eventValue);
+  }
+
   shuffle(a) {
     for (let i = a.length; i; i--) {
-        let j = Math.floor(Math.random() * i);
-        [a[i - 1], a[j]] = [a[j], a[i - 1]];
+      const j = Math.floor(Math.random() * i);
+      [a[i - 1], a[j]] = [a[j], a[i - 1]];
     }
     return a;
   }
 
-  done(): void{
+  done(): void {
     this.progress = 100;
     this.isComplete = true;
   }
-
-  
-
 }

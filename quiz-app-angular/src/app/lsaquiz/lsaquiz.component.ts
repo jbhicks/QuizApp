@@ -1,17 +1,15 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'lsaquiz',
+  selector: 'app-lsaquiz',
   templateUrl: './lsaquiz.component.html',
-  styleUrls: ['./lsaquiz.component.css']
+  styleUrls: ['./lsaquiz.component.css'],
 })
-
 export class LSAQuizComponent implements OnInit {
   selectedQuiz: string;
-
-  constructor() {}
-
-  ngOnInit(): void {
-      this.selectedQuiz = 'LSA';
+  constructor() {
+    this.selectedQuiz = 'LSA';
   }
+
+  ngOnInit(): void {}
 }

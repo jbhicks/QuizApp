@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { QuestionSearchComponent } from './question-search.component';
+import { CsaquizComponent } from './csaquiz.component';
 
-describe('QuestionSearchComponent', () => {
-  let component: QuestionSearchComponent;
-  let fixture: ComponentFixture<QuestionSearchComponent>;
+describe('CsaquizComponent', () => {
+  let component: CsaquizComponent;
+  let fixture: ComponentFixture<CsaquizComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ QuestionSearchComponent ]
+      declarations: [ CsaquizComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(QuestionSearchComponent);
+    fixture = TestBed.createComponent(CsaquizComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
